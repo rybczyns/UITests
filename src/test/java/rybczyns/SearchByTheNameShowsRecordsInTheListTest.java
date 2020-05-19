@@ -2,7 +2,6 @@ package rybczyns;
 
 import org.testng.annotations.Test;
 import rybczyns.pages.HomePage;
-import rybczyns.pages.SeleniumPage;
 
 public class SearchByTheNameShowsRecordsInTheListTest extends SeleniumBaseTest {
 
