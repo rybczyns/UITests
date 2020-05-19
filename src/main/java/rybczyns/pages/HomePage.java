@@ -21,8 +21,12 @@ public class HomePage extends SeleniumPage {
     private WebElement idColumnInTbody;
     @FindBy(xpath = "//table[contains(@class, 'table-hover')]/tbody/tr[1]/td[2]")
     private WebElement nameColumnInTbody;
+    @FindBy(xpath = "//table[contains(@class, 'table-hover')]/tbody/tr[1]/td[4]")
+    private WebElement cityColumnInTbody;
     @FindBy (id ="table-resume")
     private WebElement tableResume;
+    @FindBy (id="match-case")
+    private WebElement matchCase;
 
 
     public HomePage enterText(String inputText) {
@@ -39,13 +43,26 @@ public class HomePage extends SeleniumPage {
 
         return this;
     }
-    public HomePage selectIdFromList(String columnName){
+    public HomePage selectColumnFromList(String columnName){
         Select searchColumn = new Select(driver.findElement(By.id("search-column")));
         searchColumn.selectByVisibleText(columnName);
         return this;
     }
     public HomePage assertNoResultsDisplayed(){
         Assert.assertTrue(tableResume.getText().contains("Showing 0 of "));
+        return this;
+    }
+    public HomePage matchCaseEnabled(boolean value){
+        if (matchCase.isSelected() != value) {
+            matchCase.click();
+        }
+        return this;
+    }
+
+    public HomePage assertMatchCaseGeneratesResults(String text){
+        boolean result = idColumnInTbody.getText().equals(successIdInTest) &&
+                cityColumnInTbody.getText().equals(text);
+        Assert.assertTrue(result);
         return this;
     }
 

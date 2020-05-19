@@ -23,9 +23,8 @@ public class SeleniumBaseTest {
         driver.manage().window().maximize();
         Path urlToIndex = Paths.get(url);
         driver.get(urlToIndex.toUri().toString());
-//        driver.get(url);
     }
-
+    
     @AfterMethod
     public void baseAfterMethod(){
         driver.quit();

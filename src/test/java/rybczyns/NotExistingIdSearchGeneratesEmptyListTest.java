@@ -9,7 +9,7 @@ public class NotExistingIdSearchGeneratesEmptyListTest extends SeleniumBaseTest 
     @Test
     public void noIdGeneratesEmptyTable() {
         new HomePage(driver)
-                .selectIdFromList(columnName)
+                .selectColumnFromList(columnName)
                 .enterText("0")
                 .assertNoResultsDisplayed();
     }
